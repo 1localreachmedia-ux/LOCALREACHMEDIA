@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Request Sent | LocalReach Media</title>
+  <style>
+    :root{--navy:#071b2c;--navy2:#0d2940;--teal:#14b8b6;--white:#fff;--muted:#b7c7d3}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--navy);color:var(--white)}
+    body{min-height:100vh;display:grid;place-items:center;overflow:hidden;position:relative;padding:24px}
+    .bg{position:absolute;inset:-15%;background:radial-gradient(circle at 20% 20%,rgba(20,184,182,.22),transparent 28%),radial-gradient(circle at 82% 70%,rgba(20,184,182,.16),transparent 25%),linear-gradient(135deg,#061522,#0c2a42 65%,#071b2c);animation:drift 10s ease-in-out infinite alternate}
+    .orb{position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(255,255,255,.09);left:-120px;bottom:-150px;animation:float 9s ease-in-out infinite}
+    .orb.two{width:280px;height:280px;left:auto;bottom:auto;right:-80px;top:-90px;animation-delay:-3s}
+    main{position:relative;z-index:2;width:min(680px,100%);text-align:center;padding:52px 34px;border:1px solid rgba(255,255,255,.14);border-radius:30px;background:rgba(7,27,44,.7);backdrop-filter:blur(18px);box-shadow:0 30px 90px rgba(0,0,0,.28)}
+    .check{width:82px;height:82px;border-radius:50%;margin:0 auto 24px;display:grid;place-items:center;background:rgba(20,184,182,.14);border:1px solid rgba(20,184,182,.5);font-size:40px;animation:pop .55s cubic-bezier(.2,.9,.3,1.2) both}
+    img{width:220px;max-width:65%;height:auto;margin-bottom:24px;filter:brightness(0) invert(1);opacity:.96}
+    h1{font-size:clamp(2.3rem,7vw,4.6rem);line-height:.95;letter-spacing:-.055em;margin:0 0 18px}
+    h1 span{color:var(--teal)}
+    p{font-size:1.08rem;line-height:1.7;color:var(--muted);max-width:520px;margin:0 auto 28px}
+    a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--teal);color:#04191b;font-weight:800;padding:15px 22px;border-radius:999px;transition:transform .2s ease,box-shadow .2s ease}
+    a:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(20,184,182,.25)}
+    .return{margin-top:18px;font-size:.88rem;color:#8fa6b7}
+    @keyframes drift{to{transform:translate3d(2%,-1%,0) scale(1.03)}}
+    @keyframes float{50%{transform:translateY(-24px) rotate(8deg)}}
+    @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
+  <main>
+    <div class="check" aria-hidden="true">✓</div>
+    <img src="logo.png" alt="LocalReach Media">
+    <h1>Your request is <span>on the way.</span></h1>
+    <p>Thanks for reaching out to LocalReach Media. We received your reservation request and will follow up about placement availability and next steps.</p>
+    <a href="./">Back to LocalReach Media <span>→</span></a>
+    <div class="return" id="return-note">Returning you to the homepage in 6 seconds…</div>
+  </main>
+  <script>
+    let seconds = 6;
+    const note = document.getElementById('return-note');
+    const timer = setInterval(() => {
+      seconds -= 1;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = './';
+        return;
+      }
+      note.textContent = `Returning you to the homepage in ${seconds} second${seconds === 1 ? '' : 's'}…`;
+    }, 1000);
+  </script>
+</body>
+</html>
